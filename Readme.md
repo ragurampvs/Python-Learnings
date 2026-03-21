@@ -642,34 +642,18 @@ Flow Control Statements:
         3. Code in one function's Local Scope cannot use variables in another Local Scope.
         4. Code in one function's Local Scope cannot use variables in "any" other Local Scope.
 
+    Example 1(Refer above first note):
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ cat local_cannot_be_global.py 
+        def func_1():
+            home_name = Nial
+
+        func_1()
+        print(home_name)
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ python3 local_cannot_be_global.  py 
+        Traceback (most recent call last):
+          File "/home/ansible/CloudDataOps/Python-Learnings/local_cannot_be_global.py", line 4, in  <module>
+            func_1()
+          File "/home/ansible/CloudDataOps/Python-Learnings/local_cannot_be_global.py", line 2, in  func_1
+            home_name = Nial
+        NameError: name 'Nial' is not defined
