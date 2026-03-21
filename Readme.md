@@ -555,10 +555,94 @@ Flow Control Statements:
     >>> pyperclip.paste()
     'Hello, Nial'
 
-
+    Write your own Functions:
+    ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ cat function_1.py 
+    def func_test(name):
+        print('Hello ' + name)
     
+    func_test('Nial')
+    func_test('Nimalan')
     
+    ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ python3 function_1.py 
+    Hello Nial
+    Hello Nimalan
+    
+    Functions using RETURN STATEMENT:
+    ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ cat function_return.py 
+    def func_1():
+        a = 50
 
+    def func_2():
+        b = 100
+        return b
+
+    print(func_1())
+    print(func_2())
+    
+    ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ python3 function_return.py 
+    None
+    100
+
+    Using NONE value:
+    ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ cat function_none.py 
+    myname = input('Please enter your name: ')
+
+    if not myname:
+        print("Please enter Something")
+    else:
+        print(myname)
+    
+    ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ python3 function_none.py 
+    Please enter your name: 
+    Please enter Something
+    
+    ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ python3 function_none.py 
+    Please enter your name: Hello Nial
+    Hello Nial
+    
+    User Input, with None Value - till the user enter the value:
+    ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ cat function_none_untill_user_input.py
+    while True:
+        myname = input('Please enter your name: ')
+        if not myname:
+            print("Nothing entered, please enter something")
+        else:
+            print(myname)
+            break
+    
+    ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ python3 function_none_untill_user_input.py 
+    Please enter your name: 
+    Nothing entered, please enter something
+    Please enter your name: Hello Nial
+    Hello Nial
+
+    Using END & SEP in print statement:
+    >>> print("Hello", "Nial,", "Good", "Morning", sep="**") # "sep" argument used add more some characters in-between values
+    Hello**Nial,**Good**Morning
+
+    >>> print("Hello", end="")
+    Hello>>>            # "end" argument will not print with new line
+    >>> print("Hello")
+    Hello
+    >>> 
+
+    GLOBAL SCOPE & LOCAL SCOPE [Global Variable & Local Variable]
+    
+    Scope is the where: It’s the "zone" of the code where a name is visible.
+        Global Scope: The entire script.
+        Local Scope: Inside a specific function.
+    
+    Variable is the what: It’s the actual container holding a value.
+        Global Variable: A variable defined in the global scope.
+        Local Variable: A variable defined inside a function.
+
+    Important Note:
+        1. Code in the Global Scope cannot be use in Local Scope.
+        2. Code in a Local Scope can be used in Global Scope.
+        3. Code in one function's Local Scope cannot use variables in another Local Scope.
+        4. Code in one function's Local Scope cannot use variables in "any" other Local Scope.
+
+        
 
 
 
