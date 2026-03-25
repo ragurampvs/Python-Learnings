@@ -637,10 +637,10 @@ Flow Control Statements:
         Local Variable: A variable defined inside a function.
 
     Important Note:
-        1. Code in the Global Scope cannot be use in Local Scope.
-        2. Code in a Local Scope can be used in Global Scope.
-        3. Code in one function's Local Scope cannot use variables in another Local Scope.
-        4. Code in one function's Local Scope cannot use variables in "any" other Local Scope.
+        1. Local Variables Cannot Be Used in the Global Scope
+        2. Local Scopes Cannot Use Variables in Other Local Scopes
+        3. Global Variables Can Be Read from a Local Scope
+        4. Local and Global Variables with the Same Name
 
     Example 1(Refer above first note):
         ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ cat local_cannot_be_global.py 
@@ -657,3 +657,16 @@ Flow Control Statements:
           File "/home/ansible/CloudDataOps/Python-Learnings/local_cannot_be_global.py", line 2, in  func_1
             home_name = Nial
         NameError: name 'Nial' is not defined
+        #### Local Scope can't be used in Global Scope ###
+
+    
+
+| Comparison Basis    | Global Variable                                            | Local Variable                                                |
+| :------------------ | :--------------------------------------------------------- | :------------------------------------------------------------ |
+| **Definition**       | Declared outside the functions                             | Declared inside a function                                    |
+| **Lifetime**         | Created when the program starts and destroyed when it ends | Created when the function is called and destroyed when it returns |
+| **Data Sharing**     | Shared across all functions                                | Not shared; exists only within its function                   |
+| **Scope**            | Can be accessed anywhere in the program                    | Accessible only inside the function                           |
+| **Parameters needed**| No parameter passing needed                                | May be created through parameters or assignments in function  |
+| **Storage**          | Managed in the global namespace                            | Stored in the function’s local namespace (stack frame)        |
+| **Value**            | Changes affect the entire program                          | Changes are local and don’t affect other functions            |
