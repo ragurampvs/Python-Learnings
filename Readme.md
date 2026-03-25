@@ -113,7 +113,17 @@ Important Topics
         Next year my age will be: 8 years
         >>> print (len(name))
         7
-    
+
+        Key Differences between Standard print() & print(f"...") (f-strings):
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ cat print_printf_diff.py 
+        name = "Nial"
+        print("Name: {name}")  # Output: Name: {name}
+        print(f"Name: {name}") # Output: Name: Nial
+        
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ python3 print_printf_diff.py 
+        Name: {name}
+        Name: Nial
+
     Practice Program:
     ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python_Learnings$ cat hello.py 
     # This python program says Hello, asks user input and using few funtions
@@ -642,7 +652,7 @@ Flow Control Statements:
         3. Global Variables Can Be Read from a Local Scope
         4. Local and Global Variables with the Same Name
 
-    Example 1(Refer above first note):
+    Example: 1(Refer above first point):
         ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ cat local_cannot_be_global.py 
         def func_1():
             home_name = Nial
@@ -657,10 +667,64 @@ Flow Control Statements:
           File "/home/ansible/CloudDataOps/Python-Learnings/local_cannot_be_global.py", line 2, in  func_1
             home_name = Nial
         NameError: name 'Nial' is not defined
-        #### Local Scope can't be used in Global Scope ###
+        #### Local Variables can't be used in Global Scope ###
 
-    
+    Example: 2 (Refer the second point):
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ cat local_cannot_use_another_local.py 
+        def function_one():
+            # 'secret_value' exists only inside this local scope
+            secret_value = "My_Secrets"
+            print(f"Inside function_one: {secret_value}")
 
+        def function_two():
+            # This will cause a NameError because 'secret_value' is NOT in this scope
+            print(f"Inside function_two trying to access: {secret_value}")
+
+        function_one()
+        function_two()
+        
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ python3 local_cannot_use_another_local.py 
+        Inside function_one: My_Secrets
+        Traceback (most recent call last):
+          File "/home/ansible/CloudDataOps/Python-Learnings/local_cannot_use_another_local.py", line 11, in <module>
+            function_two()
+          File "/home/ansible/CloudDataOps/Python-Learnings/local_cannot_use_another_local.py", line 8, in function_two
+            print(f"Inside function_two trying to access: {secret_value}")
+        NameError: name 'secret_value' is not defined
+        #### Local Scopes Cannot Use Variables in Other Local Scopes ###
+
+    Example: 3 (Refer the third point):
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ cat global_can_use_local.py 
+        name = "Nial" # Global variable
+
+        def read_global():
+            # Reading 'name' directly from global scope
+            print(f"Inside function: {name}") 
+
+        read_global()
+        print(f"Outside function: {name}")
+
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ python3 global_can_use_local.py 
+        Inside function: Nial
+        Outside function: Nial
+        ### Global Variables Can Be Read from a Local Scope ###    
+
+    Example: 4 (Refer the fourth point):
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ cat local_global_same_value.py
+        x = "Global Value"  # Global variable
+
+        def my_function():
+            x = "Local Value"  # Local variable with same name
+            print("Inside function:", x)
+
+        my_function()
+        print("Outside function:", x)
+        
+        ansible@ansible-PowerEdge-T30:~/CloudDataOps/Python-Learnings$ python3 local_global_same_value.py 
+        Inside function: Local Value
+        Outside function: Global Value
+        ### Local and Global Variables with the Same Name ###
+****************************************************************************************************************
 | Comparison Basis    | Global Variable                                            | Local Variable                                                |
 | :------------------ | :--------------------------------------------------------- | :------------------------------------------------------------ |
 | **Definition**       | Declared outside the functions                             | Declared inside a function                                    |
@@ -670,3 +734,4 @@ Flow Control Statements:
 | **Parameters needed**| No parameter passing needed                                | May be created through parameters or assignments in function  |
 | **Storage**          | Managed in the global namespace                            | Stored in the function’s local namespace (stack frame)        |
 | **Value**            | Changes affect the entire program                          | Changes are local and don’t affect other functions            |
+****************************************************************************************************************
